@@ -112,7 +112,7 @@ int main(){
     bubbleSortOrders(orders, n, false);
 
     for (int i = 0; i < 10; i++){
-        cout << orders[i]->str()<<endl;
+        cout << orders[i] <<endl;
     }
 
     cout << (orders[1] == orders[2]) << endl;
