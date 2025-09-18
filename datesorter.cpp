@@ -105,18 +105,18 @@ int main(){
     loadOrderData("orders.txt", orders);
 
     for (int i = 0; i < 10; i++){
-        cout << orders[i] <<endl;
+        cout << *orders[i] <<endl;
     }
     cout << endl;
-    int n = orders.size();
+    const int n = orders.size();
     bubbleSortOrders(orders, n, false);
 
     for (int i = 0; i < 10; i++){
-        cout << orders[i] <<endl;
+        cout << *orders[i] <<endl;
     }
     cout << (orders[1] == orders[2]) << endl;
 
-    for (Order* order : orders) {
+    for (const Order* order : orders) {
         delete order;
     }
     orders.clear();
