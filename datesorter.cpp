@@ -84,7 +84,7 @@ void bubbleSortOrders(vector<Order*>& A, int n, bool asc = true){
     for (int i = 0; i < n-1; i++){
         change = false;
         for (int j = 0; j < n - i - 1; j++){
-            if (asc ? (*A[j] > *A[j+1]) : ((*A[j] < *A[j+1]))) {
+            if (asc ? (*A[j] > *A[j+1]) : (*A[j] < *A[j+1])) {
                 aux = A[j+1];
                 A[j+1] = A[j];
                 A[j] = aux;
