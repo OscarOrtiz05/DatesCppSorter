@@ -105,7 +105,7 @@ int main(){
     loadOrderData("orders.txt", orders);
 
     for (int i = 0; i < 10; i++){
-        cout << orders[i]->str()<<endl;
+        cout << orders[i] <<endl;
     }
     cout << endl;
     int n = orders.size();
