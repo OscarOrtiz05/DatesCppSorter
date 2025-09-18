@@ -77,18 +77,43 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
     file.close();
 }
 
+//bubble sort for the prices of Item objects
+void bubbleSortOrders(vector<Order*>& A, int n, bool asc = true){
+    Order* aux;
+    bool change;
+    for (int i = 0; i < n-1; i++){
+        change = false;
+        for (int j = 0; j < n - i - 1; j++){
+            if (asc ? (*A[j] > *A[j+1]) : ((*A[j] < *A[j+1]))) {
+                aux = A[j+1];
+                A[j+1] = A[j];
+                A[j] = aux;
+                change = true;
+            }
+        }
+        if (change == false){
+            break;
+        }
+    }
+}
+
 
 
 
 int main(){
     vector<Order*> orders;
-    int n = orders.size();         
-    int* indices = new int[n];
-       
     loadOrderData("orders.txt", orders);
 
     for (int i = 0; i < 10; i++){
         cout << orders[i]->str()<<endl;
     }
-    delete[] indices, orders;
+    cout << endl;
+    int n = orders.size();
+    bubbleSortOrders(orders, n, false);
+
+    for (int i = 0; i < 10; i++){
+        cout << orders[i]->str()<<endl;
+    }
+
+    cout << (orders[1] == orders[2]) << endl;
 }
