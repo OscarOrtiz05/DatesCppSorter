@@ -77,12 +77,18 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
     file.close();
 }
 
+
+
+
 int main(){
     vector<Order*> orders;
+    int n = orders.size();         
+    int* indices = new int[n];
+       
     loadOrderData("orders.txt", orders);
-    int n = 10;
-    for (int i = 0; i < n;i++){
-        cout << orders[i]->str() << endl;
-    }
 
+    for (int i = 0; i < 10; i++){
+        cout << orders[i]->str()<<endl;
+    }
+    delete[] indices, orders;
 }
