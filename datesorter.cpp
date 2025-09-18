@@ -4,7 +4,7 @@
 #include <sstream>
 #include <map>
 
-int monthToInt(string m){
+int monthToInt(string const &m){
     if (m == "ene"){
         return 1;
     } else if (m == "Feb"){
@@ -51,13 +51,13 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
 
         // get each field from the csv line
         getline(ss, month,' ');
-        getline(ss, day, ' ');       
-        getline(ss, hr, ':');       
-        getline(ss, min, ':');   
-        getline(ss, s, ' ');   
-        getline(ss, r, ' ');     
-        getline(ss, o, '(');     
-        getline(ss, n, ')');    
+        getline(ss, day, ' ');
+        getline(ss, hr, ':');
+        getline(ss, min, ':');
+        getline(ss, s, ' ');
+        getline(ss, r, ' ');
+        getline(ss, o, '(');
+        getline(ss, n, ')');
 
 
         // convert strings to numbers
@@ -72,6 +72,7 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
         // create a new movie and add to the catalog
         Order* order = new Order(_s,_min,_hr,_day,_month,_n,r,o);
         _orders.push_back(order);
+        delete order;
     }
 
     file.close();
@@ -79,13 +80,12 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
 
 //bubble sort for the prices of Item objects
 void bubbleSortOrders(vector<Order*>& A, int n, bool asc = true){
-    Order* aux;
-    bool change;
+    
     for (int i = 0; i < n-1; i++){
-        change = false;
+        bool change = false;
         for (int j = 0; j < n - i - 1; j++){
             if (asc ? (*A[j] > *A[j+1]) : (*A[j] < *A[j+1])) {
-                aux = A[j+1];
+                Order* aux = A[j+1];
                 A[j+1] = A[j];
                 A[j] = aux;
                 change = true;
@@ -114,6 +114,12 @@ int main(){
     for (int i = 0; i < 10; i++){
         cout << orders[i] <<endl;
     }
-
     cout << (orders[1] == orders[2]) << endl;
+
+    for (Order* order : orders) {
+        delete order;
+    }
+    orders.clear();
+    
+    return 0;
 }
