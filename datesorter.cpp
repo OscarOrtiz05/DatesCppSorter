@@ -5,7 +5,7 @@
 #include <map>
 
 int monthToInt(string m){
-    if (m == "Jan"){
+    if (m == "ene"){
         return 1;
     } else if (m == "Feb"){
         return 2;
