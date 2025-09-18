@@ -30,10 +30,6 @@ class Order {
         return 0;
     }
 
-    string str(){
-        return to_string(month) + " " + to_string(day) + " " + to_string(hr)+ ':' + to_string(min)+ ':' + to_string(sec)+ " " + name + restaurant + to_string(n);
-    }
-
     bool operator == (const Order& other) const {
         return (compareTime(other) == 0);
     }
@@ -42,6 +38,26 @@ class Order {
     }
     bool operator < (const Order& other) const {
         return (compareTime(other) < 0);
+    }
+
+    friend ostream& operator<<(ostream& os, const Order& order){
+      string mes;
+      if (order.getMonth() == 1) mes = "ENE";
+      if (order.getMonth() == 2) mes = "FEB";
+      if (order.getMonth() == 3) mes = "MAR";
+      if (order.getMonth() == 4) mes = "ABR";
+      if (order.getMonth() == 5) mes = "MAY";
+      if (order.getMonth() == 6) mes = "JUN";
+      if (order.getMonth() == 7) mes = "JUL";
+      if (order.getMonth() == 8) mes = "AGO";
+      if (order.getMonth() == 9) mes = "SEP";
+      if (order.getMonth() == 10) mes = "OCT";
+      if (order.getMonth() == 11) mes = "NOV";
+      if (order.getMonth() == 12) mes = "DIC";
+
+      os << mes << " " << order.getDay() << " " << order.getHour() << ":" << order.getMin() << ":" << order.getSec() << " R:" << order.getRestaurant() << " O:" << order.getName() << "(" << order.getNumber() << ")";
+      
+      return os;
     }
     
 };
