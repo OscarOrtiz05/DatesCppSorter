@@ -47,7 +47,7 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
 
     while(getline(file, line)){
         stringstream ss(line);
-        string s, min, hr, day, month, year, n, r, o;
+        string s, min, hr, day, month, year, n, r, o, waste;
 
         // get each field from the csv line
         getline(ss, month,' ');
@@ -55,7 +55,9 @@ void loadOrderData(const string& filename, vector<Order*>& _orders) {
         getline(ss, hr, ':');
         getline(ss, min, ':');
         getline(ss, s, ' ');
-        getline(ss, r, ' ');
+        getline(ss, waste, ':');
+        getline(ss, r, 'O');
+        getline(ss, waste, ':');
         getline(ss, o, '(');
         getline(ss, n, ')');
 
@@ -109,7 +111,7 @@ int main(){
     }
     cout << endl;
     int n = orders.size();
-    bubbleSortOrders(orders, n, false);
+    bubbleSortOrders(orders, n, true);
 
     for (int i = 0; i < 10; i++){
         cout << *orders[i] <<endl;
