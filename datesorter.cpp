@@ -5,7 +5,7 @@
 #include <map>
 
 int monthToInt(string m){
-    if (m == "Jan"){
+    if (m == "ene"){
         return 1;
     } else if (m == "Feb"){
         return 2;
@@ -112,7 +112,7 @@ int main(){
     bubbleSortOrders(orders, n, false);
 
     for (int i = 0; i < 10; i++){
-        cout << orders[i] <<endl;
+        cout << *orders[i] <<endl;
     }
 
     cout << (orders[1] == orders[2]) << endl;
